@@ -1,0 +1,13 @@
+{
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindConfig": "./tailwind.config.js",
+  "singleQuote": true,
+  "tailwindcss/tailwindcss": true,
+  "proseWrap": "preserve",
+  "printWidth": 120,
+  "bracketSameLine": true,
+  "jsxSingleQuote": true,
+  "bracketSpacing": true,
+  "singleAttributePerLine": false,
+  "tabWidth": 2
+}
