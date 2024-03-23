@@ -1,4 +1,4 @@
-import Psyduck from '../assets/Psyduck.png';
+import Psyduck from '../../assets/Psyduck.png';
 export default function ErrorPage() {
   return (
     <div className='mx-auto flex h-dvh items-center justify-center'>
