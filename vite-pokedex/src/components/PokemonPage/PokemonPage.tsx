@@ -11,27 +11,27 @@ import { useEffect } from 'react';
 export default function PokemonPage() {
   const { id } = useParams();
   const location = useLocation();
-  const { data, status, refetch } = useQuery('pokemon', () => fetchPokemon(id ?? 'psyduck'));
+  const { data, status, refetch, isRefetching } = useQuery('pokemon', () => fetchPokemon(id ?? 'psyduck'));
 
   useEffect(() => {
     refetch();
   }, [location, refetch]);
-  return status === 'loading' ? (
+  return status === 'loading' || isRefetching ? (
     <PageLoading />
   ) : status === 'error' ? (
-    <div className='mx-auto mt-20 flex w-8/12 flex-col flex-wrap justify-center gap-y-10'>
+    <div className='mx-auto mt-20 flex w-10/12 flex-col flex-wrap justify-center gap-y-10 md:w-8/12'>
       <NotFound />
     </div>
   ) : (
-    <div className='font-pixelify mx-auto mt-10 flex w-8/12 justify-between bg-white p-5 shadow-xl'>
-      <div className='flex w-1/2 flex-wrap gap-2'>
+    <div className='mx-auto mt-5 flex w-11/12 flex-col justify-between bg-white p-5 font-pixelify shadow-xl md:mt-10 md:w-10/12 xl:flex-row 2xl:w-8/12'>
+      <div className='order-2 mt-10 flex w-full flex-wrap justify-between gap-5 md:mt-0 md:gap-2 xl:order-1 xl:w-1/2 xl:justify-normal'>
         <View name={data?.name} url={data?.sprites.front_default} />
         <View name={data?.name + ' back.'} url={data?.sprites.back_default} />
         <View name={data?.name + ' shiny.'} url={data?.sprites.front_shiny} />
         <View name={data?.name + ' back shiny.'} url={data?.sprites.back_shiny} />
       </div>
-      <div className='relative w-1/2'>
-        <div className='flex items-center justify-between text-center text-4xl font-bold capitalize'>
+      <div className='relative order-1 w-full xl:order-2 xl:w-1/2'>
+        <div className='flex items-center justify-between text-center text-xl font-bold capitalize md:text-4xl'>
           <span className='order-2'>{data?.name}</span>
           <span className='order-1 mx-2 text-zinc-400'># {data?.id}</span>
           <div className='order-3 flex flex-col gap-2'>
@@ -44,7 +44,7 @@ export default function PokemonPage() {
             ))}
           </div>
         </div>
-        <ul className='mt-10 text-2xl font-bold capitalize'>
+        <ul className='mb:text-2xl mb-16 mt-5 text-lg font-bold capitalize xl:mb-0 xl:mt-10'>
           <li>
             Weight: <span className='text-xl text-blue-600'>{data?.weight}kg</span>
           </li>
@@ -54,7 +54,7 @@ export default function PokemonPage() {
           <li>
             EXP: <span className='text-xl text-blue-600'>{data?.base_experience}</span>
           </li>
-          <li>
+          <li className='truncate'>
             Abilities:
             <span className='text-xl text-blue-600'>
               {data?.abilities.map((ability, i) => (
@@ -64,7 +64,7 @@ export default function PokemonPage() {
               ))}
             </span>
           </li>
-          <li>
+          <li className='truncate'>
             Held Items:
             <span className='text-xl text-blue-600'>
               {data?.held_items.map((item, j) => (
@@ -74,7 +74,7 @@ export default function PokemonPage() {
               ))}
             </span>
           </li>
-          <li>
+          <li className='truncate'>
             Evolution:
             <span className='text-xl text-blue-600'>
               {data?.evolutionArray?.map((evolution, i) => (

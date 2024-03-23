@@ -60,21 +60,6 @@ export default function MobileMenu(props: PropsType) {
           <span className='text-center text-lg font-semibold text-blue-600'>{filter.totalPokemons}</span> results.
         </div>
       </div>
-      <button className='fixed rounded-lg'>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          strokeWidth={1.5}
-          stroke='currentColor'
-          className='h-10 w-10'>
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            d='m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
-          />
-        </svg>
-      </button>
       <button className='rounded-lg border-2 md:hidden' onClick={() => setIsOpen(!isOpen)}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -82,8 +67,12 @@ export default function MobileMenu(props: PropsType) {
           viewBox='0 0 24 24'
           strokeWidth={1.5}
           stroke='currentColor'
-          className='h-10 w-10'>
-          <path strokeLinecap='round' strokeLinejoin='round' d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5' />
+          className={`h-10 w-10 ${isOpen ? 'rotate-180' : ''} duration-200`}>
+          <path
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            d={`${isOpen ? 'M6 18 18 6M6 6l12 12' : 'M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'}`}
+          />
         </svg>
       </button>
     </>

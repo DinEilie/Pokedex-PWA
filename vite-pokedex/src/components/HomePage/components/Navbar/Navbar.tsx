@@ -2,8 +2,6 @@ import { useQuery } from 'react-query';
 import { getTypeColor } from '../../utilities/getTypeColor';
 import { useStore } from '../../../../stores/filter';
 import logo from '../../../../assets/International_Pokémon_logo.svg';
-import hamburger from '../../../../assets/pokeball.svg';
-import { useState } from 'react';
 import MobileMenu from './components/MobileMenu';
 export default function Navbar() {
   // React query fetch function
@@ -18,17 +16,25 @@ export default function Navbar() {
 
   const { data, status } = useQuery('types', fetchTypes);
   return status === 'loading' ? (
-    <div className='sticky top-0 z-50 flex w-full items-center justify-start bg-white py-6 shadow-lg'>
-      <img alt='Pokemon logo.' src={logo} className='w-48' />
+    <div className='sticky top-0 z-50 bg-white shadow-lg'>
+      <div className='bg-gradient-to-r from-blue-600 to-sky-400 p-1'></div>
+      <div className='mx-auto flex items-center justify-around gap-10 bg-white py-3 md:w-11/12 md:justify-between lg:gap-20 xl:w-10/12 2xl:w-8/12'>
+        <img alt='Pokemon logo.' src={logo} className='w-32' />
+      </div>
     </div>
   ) : status === 'error' ? (
-    <div className='sticky top-0 z-50 flex w-full items-center justify-start bg-white py-6 shadow-lg'>
-      <img alt='Pokemon logo.' src={logo} className='w-48' />
+    <div className='sticky top-0 z-50 bg-white shadow-lg'>
+      <div className='bg-gradient-to-r from-blue-600 to-sky-400 p-1'></div>
+      <div className='mx-auto flex items-center justify-around gap-10 bg-white py-3 md:w-11/12 md:justify-between lg:gap-20 xl:w-10/12 2xl:w-8/12'>
+        <img alt='Pokemon logo.' src={logo} className='w-32' />
+        <div>An error occured while loding filter options, please again later.</div>
+        <div></div>
+      </div>
     </div>
   ) : (
     <div className='sticky top-0 z-50 bg-white shadow-lg'>
       <div className='bg-gradient-to-r from-blue-600 to-sky-400 p-1'></div>
-      <div className='mx-auto flex items-center justify-around gap-10 bg-white py-3 md:w-11/12 md:justify-between lg:w-10/12 lg:gap-20 2xl:w-8/12'>
+      <div className='mx-auto flex items-center justify-around gap-10 bg-white py-3 md:w-11/12 md:justify-between lg:gap-20 xl:w-10/12 2xl:w-8/12'>
         <img alt='Pokemon logo.' src={logo} className='w-32' />
         <div className='hidden md:inline-block'>
           <label htmlFor='types'>Type: </label>

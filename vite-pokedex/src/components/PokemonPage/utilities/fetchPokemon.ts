@@ -1,4 +1,5 @@
 import { DataType } from '../types/DataType';
+import { z } from 'zod';
 
 export async function fetchPokemon(pokemon: string) {
   const response = await fetch('https://pokeapi.co/api/v2/pokemon/' + pokemon);

@@ -9,11 +9,11 @@ type PropsType = {
 export default function View(props: PropsType) {
   return (
     <Suspense fallback={<ViewSkeleton />}>
-      <div className='h-56 w-56 overflow-hidden rounded-lg bg-sky-300 bg-gradient-to-t from-blue-500'>
+      <div className='h-28 w-28 overflow-hidden rounded-lg bg-sky-300 bg-gradient-to-t from-blue-500 md:h-36 md:w-36 lg:h-48 lg:w-48 xl:h-56 xl:w-56'>
         <img
           alt={props.name ?? 'unknown'}
           src={props.url ?? 'unknown'}
-          className='h-56 w-56 duration-200 group-hover/hover:drop-shadow-[0_10px_8px_rgba(255,255,255,0.75)]'
+          className='h-28 w-28 duration-200 group-hover/hover:drop-shadow-[0_10px_8px_rgba(255,255,255,0.75)] md:h-36 md:w-36 lg:h-48 lg:w-48 xl:h-56 xl:w-56'
         />
       </div>
     </Suspense>

@@ -75,13 +75,13 @@ export default function HomePage() {
       {status === 'loading' ? (
         <CardsLoading />
       ) : status === 'error' ? (
-        <div className='mx-auto mt-20 flex w-8/12 flex-col flex-wrap justify-center gap-y-10'>
+        <div className='mx-auto mt-20 flex w-10/12 flex-col flex-wrap justify-center gap-y-10 md:w-8/12'>
           <NotFound />
         </div>
       ) : (
         <div className='mt-10'>
           <div
-            className={`mx-auto mt-10 flex flex-wrap md:w-10/12 2xl:w-8/12 ${filteredData.length >= 1 ? 'justify-center md:justify-between md:gap-16 lg:justify-start xl:gap-9 2xl:gap-5' : 'justify-center'} gap-y-20`}>
+            className={`mx-auto mt-10 flex flex-wrap md:w-10/12 lg:w-11/12 2xl:w-8/12 ${filteredData.length >= 1 ? 'justify-center gap-x-5 md:justify-between md:gap-16 xl:gap-9 2xl:gap-5' : 'justify-center'} gap-y-20`}>
             {filteredData.map((pokemon, index) => (
               <Link key={index} to={`pokemon/${pokemon.name}`}>
                 <Card

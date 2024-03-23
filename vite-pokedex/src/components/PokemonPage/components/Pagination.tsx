@@ -8,7 +8,7 @@ type PropsType = {
 export default function Pagination(props: PropsType) {
   const filter = useStore();
   return (
-    <div className='absolute bottom-0 flex w-full items-center justify-between text-lg font-thin text-blue-700'>
+    <div className='absolute -bottom-5 flex w-full items-center justify-between text-lg font-thin text-blue-700 md:bottom-0'>
       <Link
         to={`../pokemon/${props.current - 1}`}
         className={`flex flex-col items-center ${props.current === 1 ? 'hidden' : ''}`}>
@@ -18,7 +18,7 @@ export default function Pagination(props: PropsType) {
           viewBox='0 0 24 24'
           strokeWidth={1.5}
           stroke='currentColor'
-          className='h-6 w-6'>
+          className='h-10 w-10 md:h-6 md:w-6'>
           <path
             strokeLinecap='round'
             strokeLinejoin='round'
@@ -34,7 +34,7 @@ export default function Pagination(props: PropsType) {
           viewBox='0 0 24 24'
           strokeWidth={1.5}
           stroke='currentColor'
-          className='h-6 w-6'>
+          className='h-10 w-10 md:h-6 md:w-6'>
           <path
             strokeLinecap='round'
             strokeLinejoin='round'
@@ -52,7 +52,7 @@ export default function Pagination(props: PropsType) {
           viewBox='0 0 24 24'
           strokeWidth={1.5}
           stroke='currentColor'
-          className='h-6 w-6'>
+          className='h-10 w-10 md:h-6 md:w-6'>
           <path
             strokeLinecap='round'
             strokeLinejoin='round'
