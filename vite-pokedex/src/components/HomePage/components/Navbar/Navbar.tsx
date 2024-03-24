@@ -3,18 +3,12 @@ import { getTypeColor } from '../../utilities/getTypeColor';
 import { useStore } from '../../../../stores/filter';
 import logo from '../../../../assets/International_Pokémon_logo.svg';
 import MobileMenu from './components/MobileMenu';
+import { fetchPokemonTypes } from './utilities/fetchPokemonTypes';
 export default function Navbar() {
-  // React query fetch function
-  async function fetchTypes() {
-    const response = await fetch('https://pokeapi.co/api/v2/type');
-    const responseData: { results: { name: string; url: string }[] } = await response.json();
-    return responseData;
-  }
-
   // State management store
   const filter = useStore();
 
-  const { data, status } = useQuery('types', fetchTypes);
+  const { data, status } = useQuery('types', fetchPokemonTypes);
   return status === 'loading' ? (
     <div className='sticky top-0 z-50 bg-white shadow-lg'>
       <div className='bg-gradient-to-r from-blue-600 to-sky-400 p-1'></div>

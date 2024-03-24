@@ -1,24 +1,36 @@
 import { DataType } from '../types/DataType';
-import { z } from 'zod';
+import { DataTypeSchema } from '../types/DataTypeSchema';
+import { EvolutionSchema } from '../types/EvolutionSchema';
 
 export async function fetchPokemon(pokemon: string) {
+  // Fetch data
   const response = await fetch('https://pokeapi.co/api/v2/pokemon/' + pokemon);
   const data: DataType = await response.json();
+
+  // Validate data integrity type with Zod
+  const parsedData = DataTypeSchema.parse(data);
 
   // Check for valid evolutions
   let evolutionArray;
   try {
-    const responseSpecies = await fetch(data.species.url);
-    const speciesData: { evolution_chain: { url: string } } = await responseSpecies.json();
+    const responseSpecies = await fetch(parsedData.species.url);
+    const speciesData = await responseSpecies.json();
     const responseEvolution = await fetch(speciesData.evolution_chain.url);
-    const evolution = await responseEvolution.json();
-    evolutionArray = [evolution.chain.species.name];
-    let evolves_to = evolution.chain.evolves_to;
+    const evolutionData = await responseEvolution.json();
+
+    // Validate evolution data integrity type with Zod
+    const parsedEvolutionData = EvolutionSchema.parse(evolutionData);
+
+    evolutionArray = [parsedEvolutionData.chain.species.name];
+    let evolves_to = parsedEvolutionData.chain.evolves_to;
     while (evolves_to.length > 0) {
       evolutionArray.push(evolves_to[0].species.name);
       evolves_to = evolves_to[0]?.evolves_to;
     }
-  } catch (error) {} //Error validating evolution
+  } catch (error) {
+    //Error validating evolution
+    console.error('An error occured while validating evolution process: ', error);
+  }
 
-  return { ...data, evolutionArray };
+  return { ...parsedData, evolutionArray };
 }

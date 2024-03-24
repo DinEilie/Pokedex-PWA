@@ -86,10 +86,10 @@ export default function HomePage() {
               <Link key={index} to={`pokemon/${pokemon.name}`}>
                 <Card
                   key={index}
-                  id={pokemon.data.id}
+                  id={pokemon.data?.id ?? 0}
                   name={pokemon.name}
-                  sprite={pokemon.data.sprites.front_default}
-                  types={pokemon.data.types}
+                  sprite={pokemon.data?.sprites.front_default}
+                  types={pokemon.data?.types}
                 />
               </Link>
             ))}
