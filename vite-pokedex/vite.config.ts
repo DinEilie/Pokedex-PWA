@@ -15,6 +15,14 @@ export default defineConfig({
         short_name: 'Pokedex',
         description: 'An awesome pokedex application',
         theme_color: '#ffffff',
+        icons: [
+          {
+            src: '/pokemon.ico',
+            sizes: '128x128',
+            type: 'icon',
+            purpose: 'any maskable',
+          },
+        ],
       },
     }),
   ],

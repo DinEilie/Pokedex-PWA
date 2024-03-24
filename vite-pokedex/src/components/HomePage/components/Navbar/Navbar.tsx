@@ -39,7 +39,7 @@ export default function Navbar() {
             id='types'
             className='mx-2 border-2 text-center capitalize'>
             <option value='all'>All</option>
-            {data?.results.map((data, i) => (
+            {data?.results.map((data: { name: string; url: string }, i: number) => (
               <option
                 key={i}
                 value={data.name}

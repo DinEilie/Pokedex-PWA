@@ -8,6 +8,7 @@ import { ResultType } from './types/ResultType';
 import NotFound from '../ErrorPage/components/NotFound';
 import { fetchPokemons } from './utilities/fetchPokemons';
 import CardsLoading from './components/Card/CardsLoading';
+import { TypesType } from './types/TypesType';
 
 export default function HomePage() {
   const { data, refetch, isFetching, hasNextPage, fetchNextPage, status } = useInfiniteQuery({
@@ -41,15 +42,15 @@ export default function HomePage() {
   useEffect(() => {
     let newFilteredData: ResultType[] = [];
     data?.pages.forEach((page) => {
-      page.results.forEach((result) => {
+      page.results.forEach((result: ResultType) => {
         // Filter by type
         let typeExist = filter.currentType === 'all' ? true : false;
-        result.data.types.forEach((value) => {
+        result.data?.types.forEach((value: TypesType) => {
           if (value.type.name === filter.currentType) typeExist = true;
         });
         // Filter by name or ID
         let nameIdExist = filter.currentPokemon === '' ? true : false;
-        if (result.name.includes(filter.currentPokemon) || result.data.id.toString().includes(filter.currentPokemon))
+        if (result.name.includes(filter.currentPokemon) || result.data?.id.toString().includes(filter.currentPokemon))
           nameIdExist = true;
         if (typeExist && nameIdExist) newFilteredData = [...newFilteredData, result];
       });
