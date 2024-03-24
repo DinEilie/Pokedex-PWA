@@ -50,7 +50,10 @@ export default function HomePage() {
         });
         // Filter by name or ID
         let nameIdExist = filter.currentPokemon === '' ? true : false;
-        if (result.name.includes(filter.currentPokemon) || result.data?.id.toString().includes(filter.currentPokemon))
+        if (
+          result.name.includes(filter.currentPokemon.toLowerCase()) ||
+          result.data?.id.toString().includes(filter.currentPokemon.toLowerCase())
+        )
           nameIdExist = true;
         if (typeExist && nameIdExist) newFilteredData = [...newFilteredData, result];
       });
